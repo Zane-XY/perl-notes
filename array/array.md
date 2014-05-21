@@ -9,6 +9,7 @@
 |size|force the array into a scalar context <br> `print scalar @arr;` `my $arrSize = @arr;`|
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
+|force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
 
 
 #### existence
@@ -33,5 +34,15 @@ my %t = map {$_ => undef} @arr;
 my @r = grep {not exists $t{$_}} @params;
 print @r;
 ```
+
+## usage
+
+#### return array or array reference?
+- return large array is slower then returning array ref
+- return array ref would force other callee to handle array ref explictly 
+
+#### empty array is false
+
+Lists, arrays, and hashes are evaluated as true if non-empty
 
 
