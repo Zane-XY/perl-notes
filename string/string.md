@@ -11,7 +11,11 @@
     <td>`ucfirst`  [ref](http://perldoc.perl.org/functions/ucfirst.html) </td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
+    <td>contains</td>
+    <td>`"Hello World" =~ /World/`, `index($str, $substr) != -1`</td>
+  </tr>
+    <tr>
+    <td>not contains</td>
+    <td>`"Hello World" !~ /World/`, `index($str, $substr) == -1`</td>
   </tr>
 </table>
