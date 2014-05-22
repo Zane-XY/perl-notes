@@ -10,6 +10,7 @@
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
 |force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
+|slicing| `my @array_elements = @array[ @indexes ];`|
 
 
 #### existence
