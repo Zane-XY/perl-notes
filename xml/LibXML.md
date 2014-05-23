@@ -39,3 +39,9 @@ foreach my $e (@missing_facets) {
 $doc->setDocumentElement($root);
 print $doc->toString();
 ```
+#### modify text content
+[ref](http://stackoverflow.com/a/8412115/241824)
+```peal
+$elem->removeChildNodes();
+$elem->appendText('VAL');
+```
