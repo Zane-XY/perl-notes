@@ -13,6 +13,7 @@
 |force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
 |slicing| `my @array_elements = @array[ @indexes ];`|
 |split a literal string on whitespace to produce a list of strings|`my @stooges = qw( Larry Curly);`|
+|shift| Shifts the first value of the array off and returns it, shortening the array by 1|
 
 
 #### existence
