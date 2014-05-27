@@ -44,6 +44,7 @@ print @r;
 #### return array or array reference?
 - return large array is slower then returning array ref
 - return array ref would force other callee to handle array ref explictly 
+- pass array to function would flatten the array to multi-arguments, so you need pass array as reference.
 
 #### empty array is false
 
