@@ -11,8 +11,9 @@
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
 |force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
-|slicing| `my @array_elements = @array[ @indexes ];`|
+|slicing, accessing multiple indexes| `my @array_elements = @array[ @indexes ];`|
 |split a literal string on whitespace to produce a list of strings|`my @stooges = qw( Larry Curly);`|
+|circumfix dereference|my $array_ref = [1, 2, 3]; <br> push @{$array_ref}, 4;|
 
 
 #### existence
@@ -47,6 +48,14 @@ print @r;
 #### empty array is false
 
 Lists, arrays, and hashes are evaluated as true if non-empty
+
+#### array params will be flattened
+If you pass multiple arrays to a normal function, they will flatten into a single list.
+After the assignment, @cats will contain every argument passed to the function.@dogs will be empty.
+
+```perl
+take_pets_to_vet( @cats, @dogs );sub take_pets_to_vet{# BUGGY: do not use!my (@cats, @dogs) = @_;...}
+```
 
 
 ## difference with list
