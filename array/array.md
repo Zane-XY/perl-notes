@@ -14,6 +14,8 @@
 |slicing, accessing multiple indexes| `my @array_elements = @array[ @indexes ];`|
 |split a literal string on whitespace to produce a list of strings|`my @stooges = qw( Larry Curly);`|
 |circumfix dereference|my $array_ref = [1, 2, 3]; <br> push @{$array_ref}, 4;|
+|shift| Shifts the first value of the array off and returns it, shortening the array by 1|
+
 
 
 #### existence
@@ -44,6 +46,7 @@ print @r;
 #### return array or array reference?
 - return large array is slower then returning array ref
 - return array ref would force other callee to handle array ref explictly 
+- pass array to function would flatten the array to multi-arguments, so you need pass array as reference.
 
 #### empty array is false
 
