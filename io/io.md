@@ -9,6 +9,12 @@ my @lines = read_file($file_name);
 # chomp line endings
 my @lines = read_file($file_name, chomp => 1);
 ```
+####read file into string
+
+```perl
+use File::Slurp;
+my $text = read_file( 'filename' ) ;
+```
 
 ####remove line ending
 
