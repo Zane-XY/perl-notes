@@ -5,4 +5,20 @@ provides simple methods like `get` `getprint($url)` which suits for one-liners
 a http client
 
 #### [Mojo::UserAgent](http://mojolicio.us/perldoc/Mojo/UserAgent)
-this provides the most simple and nice api 
+
+##### build query from hash
+
+```perl
+use Mojo::URL;
+my $params = {...};
+Mojo::URL->new($url)->query($params)->to_string;
+```
+##### get response body
+
+```perl
+use Mojo::UserAgent;
+my $ua = Mojo::UserAgent->new;
+my $res = $ua->get($url => json)->res->body;
+```
+
+

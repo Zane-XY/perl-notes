@@ -44,6 +44,15 @@ print @r;
 
 ## usage
 
+#### map always returns a list
+Map always returns a list, which can be assigned to a hash such
+that the elements become key/value pairs. 
+`%hash = map { get_a_key_for($_) => $_ } @array;`
+
+to produce a list of hash use `{}` to create hash reference:
+`my @r = map { { ... => ... } } @arr;`
+
+
 #### return array or array reference?
 - return large array is slower then returning array ref
 - return array ref would force other callee to handle array ref explictly 
