@@ -8,3 +8,4 @@
 | dereference hash ref | `%$colors_ref;`|
 |key access| `$colors_ref->{$color};` or <br> `$$colors_ref{$color};`|
 | slice on hash ref| `my @colores = @{ $colors_ref }{@colors};` |
+|filter hash|`map {$_ => $$h_ref{$_}} grep {expr} (keys %$h_ref)`|
