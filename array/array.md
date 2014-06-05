@@ -14,8 +14,8 @@
 |slicing, accessing multiple indexes| `my @array_elements = @array[ @indexes ];`|
 |split a literal string on whitespace to produce a list of strings|`my @stooges = qw( Larry Curly);`|
 |circumfix dereference|my $array_ref = [1, 2, 3]; <br> push @{$array_ref}, 4;|
+|postfix dereference|my $array_ref = [1, 2, 3]; <br> push $array_ref->@*, 4;|
 |shift| Shifts the first value of the array off and returns it, shortening the array by 1|
-|dereference array ref| `@$a_ref ` or `@{$a_ref}` |
 |access array element by reference| `$a_ref->[0]`|
 |slice on array reference|`my @high_cards = @{ $cards_ref }[0 .. 2, -1];`|
 
