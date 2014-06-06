@@ -38,4 +38,8 @@
     <td>quoting operator</td>
     <td>`qq{}` `q^^` `q{}`The character immediately following the operator determines the characters used to delimit the strings.</td>
   </tr>
+    <tr>
+    <td>concatenation</td>
+    <td>`print "arr size is " . (@arr)` <br> `$1 . $2`</td>
+  </tr>
 </table>
