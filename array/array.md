@@ -27,6 +27,20 @@ my %arr = map {$_ => undef} @arr;
 print (exists $arr{"b"});
 ```
 
+smart match
+
+```perl
+use 5.010;
+
+if( $item ~~ @array ) {
+	say "The array contains $item"
+}
+
+if( $item ~~ %hash ) {
+       say "The hash contains $item"
+}
+```
+
 #### subtract
 
 ```perl
@@ -42,6 +56,27 @@ my @r = grep {not exists $t{$_}} @params;
 print @r;
 ```
 
+#### remove dups
+unordered
+
+```perl
+    my %hash   = map { $_, 1 } @array;
+    # or a hash slice: @hash{ @array } = ();
+    # or a foreach: $hash{$_} = 1 foreach ( @array );
+    my @unique = keys %hash;
+```
+
+oredered
+
+```perl
+    my @unique = ();
+    my %seen   = ();
+    foreach my $elem ( @array ) {
+        next if $seen{ $elem }++;
+        push @unique, $elem;
+    }
+  ```
+  
 ## usage
 
 #### map always returns a list
@@ -73,4 +108,5 @@ take_pets_to_vet( @cats, @dogs );sub take_pets_to_vet{# BUGGY: do not use!my
 
 ## difference with list
 ####Lists and arrays are not interchangeable in Perl
-You may store a list in an array and you may coerce an array to a list, but listsand arrays are separate concepts. Lists are values. Arrays are containers.
+A list is immutable, whereas an array is mutable. 
+In order to change a list, you need to store the it in an array variable.
