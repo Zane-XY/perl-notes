@@ -28,15 +28,34 @@ sub byage {
 
 ```perl
 my $users = [
-  {name => 'John',   score => 10,},
-  {name => 'Bob',    score => 1,},
+  {name => 'John',   score => 10},
+  {name => 'Bob',    score => 1},
   {name => 'Carlos', score => 5},
-  {name => 'Alice',  score => 5,},
+  {name => 'Alice',  score => 5},
   {name => 'Donald', score => 7}
 ];
 
 say Dumper $_ for sort {$a->{score} <=> $b->{score}} @$users;
 ```
+#### sort by multiple keys
+
+```perl
+#sort by brand, supplier and PO
+$arr_ref = [
+  {'brand' => 'A', 'supplier' => 'X', 'PO' => '2'},
+  {'brand' => 'B', 'supplier' => 'Y', 'PO' => '1'},
+  {'brand' => 'B', 'supplier' => 'X', 'PO' => '2'},
+  {'brand' => 'A', 'supplier' => 'X', 'PO' => '1'},
+  {'brand' => 'B', 'supplier' => 'X', 'PO' => '1'}
+];
+
+@$arr_ref = sort { $a->{brand}    cmp $b->{brand}    or 
+                   $a->{supplier} cmp $b->{supplier} or 
+                   $a->{PO}       <=> $b->{PO} 
+                 } @$arr_ref;
+
+```
+
 #### sort hash by value (Schwartzian transform)
 need to transform hash to list of pairs
 
