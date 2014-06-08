@@ -18,6 +18,10 @@
     <td>to lower case</td>
     <td>`lc` </td>
   </tr>
+  <tr>
+    <td>length</td>
+    <td>`length()` </td>
+  </tr>
 
   <tr>
     <td>contains</td>
