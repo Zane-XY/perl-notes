@@ -11,7 +11,8 @@
 |filter hash|`map {$_ => $$h_ref{$_}} grep {expr} (keys %$h_ref)`|
 |Hashes are unordered|`keys` `values` returns random order everytime|
 |You cannot "sort a hash"|you can only sort keys or values|
-|||
+|map values| `my %hash_new = map {$_ => trans($hash{$_})} keys %hash;`|
+|merge hashes|`my %third = (%first, %second)`|
 
 #### Combine hashes with list assignment
 `my %new_hash = (%hash1, %hash2);` 
