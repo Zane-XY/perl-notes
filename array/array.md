@@ -27,10 +27,26 @@
 - scalar assignment
 - string concatenation: `say "Number of elements: " . @words;`
 - numeric operations:  `@arr + 1`
-- inside conditionals: `if(@arr)`
+- boolean context: `if(@arr)`
+- numeric, String, and Boolean Context are all scalar context
 ##### list context
 - assign to a list : `my ($x) = @arr;`
 - assign to an array `my @a = @arr;`
+
+```perl
+$ my @arr = (1,3,5);
+$VAR1 = 1;
+$VAR2 = 3;
+$VAR3 = 5;
+$ my ($x, @y) = @arr;
+$VAR1 = 1;
+$VAR2 = 3;
+$VAR3 = 5;
+$ $x
+1                                                                               $ @y
+$VAR1 = 3;
+$VAR2 = 5;
+```
 
 #### existence
 

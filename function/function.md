@@ -35,7 +35,15 @@ f(
 #### Perl copies values on assignment
 `my` inside sub create temp copy of value.
 
+#### parentheses [ref](http://search.cpan.org/~thaljef/Perl-Critic-1.121/lib/Perl/Critic/Policy/CodeLayout/ProhibitParensWithBuiltins.pm)
 
+> Conway suggests that all built-in functions be called without parentheses around the argument list. This reduces visual clutter and disambiguates built-in functions from user functions.
+
+#### return values
+If no EXPR is given, returns an empty list in list context, the undefined value in scalar context, and (of course) nothing at all in void context.
+`return unless @arr;`
+
+ 
 #### differences between use and require
 
 As it says in the use perldoc's page:
