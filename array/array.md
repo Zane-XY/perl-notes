@@ -7,7 +7,7 @@
 | array literal  | `()` `(1..9)` `("a", "b")`  |
 |Parentheses do not create lists, it changes their precedence. The comma operator creates lists.|`say name(), ' => ', age();`|
 | print | `print join("\n", @arr);` |
-|size|force the array into a scalar context <br> `print scalar @arr;` `my $arrSize = @arr;`|
+|size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int( (@array / 2) - 0.5 );`|
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
 |force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
@@ -20,6 +20,17 @@
 |slice on array reference|`my @high_cards = @{ $cards_ref }[0 .. 2, -1];`|
 |deep copy [ref](http://perldoc.perl.org/perlfaq4.html#How-do-I-print-out-or-copy-a-recursive-data-structure%3f)|`use Storable qw(dclone);
 @data_new = @{ dclone(\@data) }`|
+|empty or not empty| not empty `if (@arr)` <br> empty `if (!@arr)`|
+
+#### contexts
+##### scalar context
+- scalar assignment
+- string concatenation: `say "Number of elements: " . @words;`
+- numeric operations:  `@arr + 1`
+- inside conditionals: `if(@arr)`
+##### list context
+- assign to a list : `my ($x) = @arr;`
+- assign to an array `my @a = @arr;`
 
 #### existence
 
