@@ -18,8 +18,7 @@
 |shift| Shifts the first value of the array off and returns it, shortening the array by 1|
 |access array element by reference| `$a_ref->[0]`|
 |slice on array reference|`my @high_cards = @{ $cards_ref }[0 .. 2, -1];`|
-|deep copy [ref](http://perldoc.perl.org/perlfaq4.html#How-do-I-print-out-or-copy-a-recursive-data-structure%3f)|`use Storable qw(dclone);
-@data_new = @{ dclone(\@data) }`|
+|deep copy [ref](http://perldoc.perl.org/perlfaq4.html#How-do-I-print-out-or-copy-a-recursive-data-structure%3f)|`use Storable qw(dclone);` <br> `@data_new = @{ dclone(\@data) }`|
 |empty or not empty| not empty `if (@arr)` <br> empty `if (!@arr)`|
 
 #### contexts
