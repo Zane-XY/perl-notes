@@ -1,9 +1,21 @@
 #sort
+sort returns new sorted LIST
+
+####sort syntax
 - sort SUBNAME LIST
 - sort BLOCK LIST
 - sort LIST
 - `cmp` lexically compare, `<=>` for numeric compare
 
+#### compare function
+<pre>
+  DB<1> print 1 <=> 2
+-1
+  DB<2> print 3 <=> 2
+1
+  DB<3> print 3 <=> 3
+0
+</pre>
 
 ####Schwartzian transform 
 sort the word list ("aaaa","a","aa") according to word length. 

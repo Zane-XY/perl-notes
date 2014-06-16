@@ -5,7 +5,7 @@
 |usage|example|
 | ------------- | ------------- |
 |array literal  | `()` `(1..9)` `("a", "b")`  |
-|print | `print join("\n", @arr);` |
+|print | `print join("\n", @arr);` <br> `use Data::Dumper;` <br> `print Dumper \@arr;` |
 |size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int( (@array / 2) - 0.5 );`|
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
@@ -53,7 +53,7 @@ print (exists $arr{"b"});
 ```
 
 ##### smart match
-
+disable 5.18 warning: `use experimental 'smartmatch';`
 ```perl
 use 5.010;
 
