@@ -82,24 +82,33 @@ print @r;
 ```
 
 #### remove dups
-unordered
+don't preserve order
 
 ```perl
-    my %hash   = map { $_, 1 } @array;
-    # or a hash slice: @hash{ @array } = ();
-    # or a foreach: $hash{$_} = 1 foreach ( @array );
-    my @unique = keys %hash;
+#!/usr/bin/perl
+use v5.10;
+use Data::Dumper;
+
+my @arr = (2,3,4,5,2,3);
+
+sub remove_dups {
+  my %t = map {$_ => 1} @_;
+  keys %t;
+}
+
+say Dumper([remove_dups(@arr)]);
 ```
 
-ordered
+preserve order
 
 ```perl
-    my @unique = ();
-    my %seen   = ();
-    foreach my $elem ( @array ) {
-        next if $seen{ $elem }++;
-        push @unique, $elem;
-    }
+sub remove_dups_order {
+  my %seen, @r;
+  for (@_) {
+    push @r, $_ if not $seen{$_}++;
+  }
+  @r;
+}
   ```
 
 #### map always returns a list
