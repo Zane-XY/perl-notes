@@ -1,12 +1,11 @@
 #Array
 
-## CheatSheet
+## Cheat Sheet
 
-| common usage  | example|
+|usage|example|
 | ------------- | ------------- |
-| array literal  | `()` `(1..9)` `("a", "b")`  |
-|Parentheses do not create lists, it changes their precedence. The comma operator creates lists.|`say name(), ' => ', age();`|
-| print | `print join("\n", @arr);` |
+|array literal  | `()` `(1..9)` `("a", "b")`  |
+|print | `print join("\n", @arr);` |
 |size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int( (@array / 2) - 0.5 );`|
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
@@ -23,28 +22,26 @@
 
 #### contexts
 ##### scalar context
+Numeric, String, and Boolean Context are all scalar context
 - scalar assignment
 - string concatenation: `say "Number of elements: " . @words;`
 - numeric operations:  `@arr + 1`
 - boolean context: `if(@arr)`
-- numeric, String, and Boolean Context are all scalar context
 ##### list context
+list context is created by assignment `@x =` or `($x) =`
 - assign to a list : `my ($x) = @arr;`
 - assign to an array `my @a = @arr;`
 
 ```perl
-$ my @arr = (1,3,5);
-$VAR1 = 1;
-$VAR2 = 3;
-$VAR3 = 5;
-$ my ($x, @y) = @arr;
-$VAR1 = 1;
-$VAR2 = 3;
-$VAR3 = 5;
-$ $x
-1                                                                               $ @y
-$VAR1 = 3;
-$VAR2 = 5;
+use v5.10.1;
+use Data::Dumper;
+my @arr = (1,3,5);
+my ($x, @y) = @arr;
+say Dumper $x;
+say Dumper \@y;
+#prints
+#$VAR1 = 1;
+#$VAR1 = [ 3, 5 ];
 ```
 
 #### existence
@@ -55,7 +52,7 @@ my %arr = map {$_ => undef} @arr;
 print (exists $arr{"b"});
 ```
 
-smart match
+##### smart match
 
 ```perl
 use 5.010;
@@ -104,8 +101,6 @@ ordered
         push @unique, $elem;
     }
   ```
-  
-## usage
 
 #### map always returns a list
 Map always returns a list, which can be assigned to a hash such
@@ -115,14 +110,12 @@ that the elements become key/value pairs.
 to produce a list of hash use `{}` to create hash reference:
 `my @r = map { { ... => ... } } @arr;`
 
-
 #### return array or array reference?
 - return large array is slower then returning array ref
 - return array ref would force other callee to handle array ref explictly 
 - pass array to function would flatten the array to multi-arguments, so you need pass array as reference.
 
 #### empty array is false
-
 Lists, arrays, and hashes are evaluated as true if non-empty
 
 #### array params will be flattened
@@ -131,10 +124,8 @@ After the assignment, @cats will contain every argument passed to the function.
 
 ```perl
 take_pets_to_vet( @cats, @dogs );sub take_pets_to_vet{# BUGGY: do not use!my (@cats, @dogs) = @_;...}
-```
+```
 
-
-## difference with list
 ####Lists and arrays are not interchangeable in Perl
-A list is immutable, whereas an array is mutable. 
-In order to change a list, you need to store the it in an array variable.
+- A list is immutable, whereas an array is mutable. 
+- In order to change a list, you need to store the it in an array variable.
