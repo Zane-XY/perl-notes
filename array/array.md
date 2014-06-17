@@ -4,21 +4,21 @@
 
 |usage|example|
 | ------------- | ------------- |
-|array literal  | `()` `(1..9)` `("a", "b")`  |
-|print | `print join("\n", @arr);` <br> `use Data::Dumper;` <br> `print Dumper \@arr;` |
-|size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int( (@array / 2) - 0.5 );`|
+|list literal  | `()` `(1..9)` `("a", "b")`  |
+|pretty print | `print join("\n", @arr);` <br> `print Dumper \@arr;` |
+|get size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int((@array / 2) - 0.5);`|
 |last index| `$#arr` `my last_elm = $arr[$#arr];`|
 |filter| `grep {$_ eq "a"} @arr` [ref](http://perldoc.perl.org/functions/grep.html)|
-|force array reference|	`my $arr_ref = [ grep {/[[:alpha:]]/} keys(%h) ];`|
-|slicing, accessing multiple indexes| `my @array_elements = @array[ @indexes ];`|
-|split a literal string on whitespace to produce a list of strings|`my @stooges = qw( Larry Curly);`|
-|circumfix dereference|my $array_ref = [1, 2, 3]; <br> push @{$array_ref}, 4;|
-|postfix dereference|my $array_ref = [1, 2, 3]; <br> push $array_ref->@*, 4;|
-|shift| Shifts the first value of the array off and returns it, shortening the array by 1|
-|access array element by reference| `$a_ref->[0]`|
-|slice on array reference|`my @high_cards = @{ $cards_ref }[0 .. 2, -1];`|
+|force array reference|	`my $a_ref = [ grep {...} keys(%h) ];`|
+|slicing, access multiple indexes| `my @arr_elems = @array[ @indexes ];`|
+|construct list from string|`my @stooges = qw( Larry Curly);`|
+|circumfix dereference|`push @{$a_ref}, 4;`|
+|postfix dereference|`push $a_ref->@*, 4;`|
+|shift|returns the first elem, shortening the array by 1|
+|access array element by reference| `$a_ref->[0];`|
+|slice on array reference|`my @high_cards = @{ $a_ref }[0 .. 2, -1];`|
 |deep copy [ref](http://perldoc.perl.org/perlfaq4.html#How-do-I-print-out-or-copy-a-recursive-data-structure%3f)|`use Storable qw(dclone);` <br> `@data_new = @{ dclone(\@data) }`|
-|empty or not empty| not empty `if (@arr)` <br> empty `if (!@arr)`|
+|empty or not empty| not empty: `if (@arr)` <br> empty: `if (!@arr)`|
 
 #### contexts
 ##### scalar context
@@ -27,6 +27,7 @@ Numeric, String, and Boolean Context are all scalar context
 - string concatenation: `say "Number of elements: " . @words;`
 - numeric operations:  `@arr + 1`
 - boolean context: `if(@arr)`
+
 ##### list context
 list context is created by assignment `@x =` or `($x) =`
 - assign to a list : `my ($x) = @arr;`
@@ -69,16 +70,12 @@ if( $item ~~ %hash ) {
 #### subtract
 
 ```perl
-my @arr = ("a", "b\n","c\n", "d");
-my @params = ("a\n", "b\n","c\n", "d\n");
-
-my %t = map {$_ => 1} @arr;
-my @r = grep {not $t{$_}} @params;
-print @r;
-
-my %t = map {$_ => undef} @arr;
-my @r = grep {not exists $t{$_}} @params;
-print @r;
+# takes two arr refs A, B, remove elements from A which is in B
+sub subtract {
+  my ($a, $b) = @_;
+  my %seen = map {$_ => 1} @$b;
+  grep {not $seen{$_}} @$a;
+}
 ```
 
 #### remove dups
