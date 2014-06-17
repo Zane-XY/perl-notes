@@ -3,7 +3,36 @@
 usage         | example
 ------------- | -------------
 open dir handle | `opendir my $dirh, '/home/monkeytamer/tasks/';` 
-read dir contents | `my @files = readdir $otherdirh;`
+read dir contents returns dir names, not full path | `my @files = readdir $otherdirh;`
+close file | `close $fh` 
+
+#### read line by line
+```perl
+open my $fh, '<', $filename;
+while (my $line = <$fh>) {
+    chomp $line;
+    ...
+}
+close $fh;
+```
+
+#### File Handle [ref](http://perldoc.perl.org/perlop.html#I/O-Operators)
+- `<>` is circumfix readline operator, `<$fh>` is `readline($fh)` 
+- when `<>` takes null filehandle, it is a synonym for `<ARGV>`, which is magical, it takes input either from STDIN, or from each file listed on the command line. 
+- if `<FILEHANDLE>` is used in LIST context, e.g. `for (...)`, a list comprising all input lines is returned.
+```perl
+while (<>) {
+    chomp;
+    say scalar reverse;
+}
+
+cat file.txt | perl -e 'while (<>) {chomp;}' # read from stdin
+perl -e 'while(<>) {chomp;}' file.txt # read from file.txt
+```
+
+#### Why use while and not for?
+for imposes list context on its operand. In the case of readline, Perl will read the entire file before processing
+any of it. while performs iteration and reads a line at a time. When memory use is a concern, use while.
 
 ####read file into array
 
@@ -34,6 +63,7 @@ while (my $line = <$fh>) {
 	chomp $line;
 	print "$line\n";
 }
+close $fh;
 ```
 #### list dir
 As of Perl 5.12 you can use a bare readdir in a while loop, which will set $_ on every iteration.
@@ -50,11 +80,11 @@ closedir $dh;
 [glob](http://perldoc.perl.org/functions/glob.html)
 ```perl
 use strict;
-    use warnings;
-    my @files = glob("*.pl *.pm");
-    foreach my $file (@files) {
-        print "$file\n";
-    }
+use warnings;
+my @files = glob("*.pl *.pm");
+foreach my $file (@files) {
+    print "$file\n";
+}
 ```
 
 #### write to file
@@ -66,8 +96,8 @@ foreach $e (@arr) {
 }
 close $fh;
 ```
+
 #### Parentheses missing around "my" list
 nearly all the docs and tutorials using `open my $fh, $file;` but this is ambiguous for `my`. What you acutally want is
-`open my ($fh), $file;` but this reads as `open my ($fh, $file);`
-so if you don't provide the second param, make sure use `my ($fh)`.
+`open my ($fh), $file;` but this reads as `open my ($fh, $file);` so if you don't provide the second param, make sure use `my ($fh)` or use `open(...)`.
 
