@@ -1,4 +1,9 @@
 #IO
+## Cheat Sheet
+usage         | example
+------------- | -------------
+open dir handle | `opendir my $dirh, '/home/monkeytamer/tasks/';` 
+read dir contents | `my @files = readdir $otherdirh;`
 
 ####read file into array
 
@@ -30,8 +35,17 @@ while (my $line = <$fh>) {
 	print "$line\n";
 }
 ```
+#### list dir
+As of Perl 5.12 you can use a bare readdir in a while loop, which will set $_ on every iteration.
+```perl
+opendir(my $dh, $some_dir) || die;
+while(readdir $dh) {
+    print "$some_dir/$_\n";
+}
+closedir $dh;
+```
 
-####[list dir](http://perlmeme.org/faqs/file_io/directory_listing.html)
+####[dir glob](http://perlmeme.org/faqs/file_io/directory_listing.html)
 
 [glob](http://perldoc.perl.org/functions/glob.html)
 ```perl
@@ -52,4 +66,8 @@ foreach $e (@arr) {
 }
 close $fh;
 ```
+#### Parentheses missing around "my" list
+nearly all the docs and tutorials using `open my $fh, $file;` but this is ambiguous for `my`. What you acutally want is
+`open my ($fh), $file;` but this reads as `open my ($fh, $file);`
+so if you don't provide the second param, make sure use `my ($fh)`.
 
