@@ -1,3 +1,15 @@
+JSON
+======
+
+#### encode JSON from hash
+
+```perl
+use JSON;
+my $json = JSON->new;
+my $data_to_json = {d=>{success=>JSON::false,error=>"key is required"}};
+print $json->encode($data_to_json) . "\n";
+```
+
 #### [Mojo::JSON](http://mojolicio.us/perldoc/Mojo/JSON)
 
 ```perl

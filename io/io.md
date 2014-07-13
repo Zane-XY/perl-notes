@@ -5,6 +5,8 @@ usage         | example
 open dir handle | `opendir my $dirh, '/home/monkeytamer/tasks/';` 
 read dir contents returns dir names, not full path | `my @files = readdir $otherdirh;`
 close file | `close $fh` 
+read `STDIN` into string | `my $str = do { local $/; <STDIN> };`
+read `STDIN` into array | `my @lines = <STDIN>;`
 
 #### read line by line
 ```perl

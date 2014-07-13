@@ -4,6 +4,7 @@
 
 |usage|example|
 | ------------- | ------------- |
+|head and tail| `my ($head, @tail) = @arr;`|
 |list literal  | `()` `(1..9)` `("a", "b")`  |
 |pretty print | `print join("\n", @arr);` <br> `print Dumper \@arr;` |
 |get size| `print scalar @arr;` <br> `my $arrSize = @arr;` <br> `return if @array == 1;` <br> `my $midpoint = int((@array / 2) - 0.5);`|
